@@ -65,22 +65,22 @@
             if(recId){
                 sObj.Id = recId;
             }
-            sObj.sobjectType = 'kanbanDev__Kanban_Configuration__c';
+            sObj.sobjectType = 'Kanban_Configuration__c';
             sObj.Name = configName;
-            sObj.kanbanDev__For_Object__c = ObjectName;
+            sObj.For_Object__c = ObjectName;
             if(kf != 'Home'){
-                sObj.kanbanDev__Child_Object__c = childObjectName.split('~;')[0];
-                sObj.kanbanDev__Relation_Field__c = childObjectName.split('~;')[1];
+                sObj.Child_Object__c = childObjectName.split('~;')[0];
+                sObj.Relation_Field__c = childObjectName.split('~;')[1];
             }else{
-                sObj.kanbanDev__Child_Object__c = ObjectName;
+                sObj.Child_Object__c = ObjectName;
             }
-            sObj.kanbanDev__Kanban_For__c = kf;
-            sObj.kanbanDev__Summarize_By__c = sumFldName;
-            sObj.kanbanDev__Summarize_By_Second__c = sumFldSecondName;
+            sObj.Kanban_For__c = kf;
+            sObj.Summarize_By__c = sumFldName;
+            sObj.Summarize_By_Second__c = sumFldSecondName;
 
-            sObj.kanbanDev__Group_By__c = grpFldName;
-            sObj.kanbanDev__Fields_To_Show__c = cardFields;
-            sObj.kanbanDev__Exclude_From_Group_By__c = pickExclVals;
+            sObj.Group_By__c = grpFldName;
+            sObj.Fields_To_Show__c = cardFields;
+            sObj.Exclude_From_Group_By__c = pickExclVals;
             var action = component.get('c.saveConfig');
             action.setParams({
                 'obj': sObj
@@ -98,7 +98,7 @@
                         });
                         var homeEvent = $A.get("e.force:navigateToObjectHome");
                             homeEvent.setParams({
-                                "scope": "kanbanDev__Kanban_Configuration__c"
+                                "scope": "Kanban_Configuration__c"
                             });
                         homeEvent.fire();
                     }else{
