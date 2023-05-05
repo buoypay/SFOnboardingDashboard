@@ -21,13 +21,20 @@
                 separator : ',', 
                 decimal : '.', 
             };
+            var optionsSecond = {
+                useEasing : true, 
+                useGrouping : true, 
+                separator : ',', 
+                decimal : '.', 
+            };
             //console.log(component.get('v.isCurrency'));
             var ftyp = component.get('v.rsFld');
             var ftypSecond = component.get('v.rsFldSecond');
 
             var deci = 0;
             if(ftyp == "CURRENCY"){
-                options.prefix = $A.get("$Locale.currency");
+                options.prefix = "S: $";
+                optionsSecond.prefix = "D: $";
             }else if(ftyp == "DOUBLE"){
                 deci = 2;
             }
