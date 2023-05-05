@@ -11,6 +11,12 @@ https://appexchange.salesforce.com/appxListingDetail?listingId=a0N3A00000DmgtuUA
 
 ---
 
+<a href="https://githubsfdeploy.herokuapp.com?owner=buoypay&repo=SFOnboardingDashboard">
+  <img alt="Deploy to Salesforce"
+       src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
+</a>
+
+
 ### Component Structure
 ```
 |- HomeChildKanban.cmp
