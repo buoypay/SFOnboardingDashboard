@@ -33,8 +33,8 @@
 
             var deci = 0;
             if(ftyp == "CURRENCY"){
-                options.prefix = "S: $";
-                optionsSecond.prefix = "D: $";
+                options.prefix = "Supply: $";
+                optionsSecond.prefix = "Demand: $";
             }else if(ftyp == "DOUBLE"){
                 deci = 2;
             }
@@ -47,7 +47,7 @@
                 component.set('v.psumval',smap[component.get('v.pickvalue')]);
             }
             if(!isNaN(smapSecond[component.get('v.pickvalue')])){
-                var demo = new CountUp(component.find('cupSecond').getElement(), psumvalSecond, smapSecond[component.get('v.pickvalue')], deci, 1, options);
+                var demo = new CountUp(component.find('cupSecond').getElement(), psumvalSecond, smapSecond[component.get('v.pickvalue')], deci, 1, optionsSecond);
                 demo.start();
                 component.set('v.psumvalSecond',smapSecond[component.get('v.pickvalue')]);
             }
