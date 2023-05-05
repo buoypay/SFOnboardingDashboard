@@ -1,11 +1,4 @@
-<!--
-Strike by Appiphony
 
-Version: 1.0.0
-Website: http://www.lightningstrike.io
-GitHub: https://github.com/appiphony/Strike-Components
-License: BSD 3-Clause License
--->
 <aura:component access="global">
     <!-- Required -->
     <aura:attribute name="label" type="String" required="true" description="Text that describes the desired textarea input" default="Strike Multi-Select"/>

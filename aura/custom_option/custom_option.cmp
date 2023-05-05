@@ -1,11 +1,3 @@
-<!--
-Strike by Appiphony
-
-Version: 1.0.0
-Website: http://www.lightningstrike.io
-GitHub: https://github.com/appiphony/Strike-Components
-License: BSD 3-Clause License
--->
 <aura:component >
     <aura:attribute name="label" type="String" required="true" description="original, unaltered label"/>
     <aura:attribute name="customIcon" type="Boolean" description="Determines whether or not to use svg to render icon"/>
