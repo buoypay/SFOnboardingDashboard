@@ -160,7 +160,7 @@ public with sharing class HomeChildKanbanCls {
                             sFldIsCurrency = aftype;
                             aggQMap = new Map<string, decimal>(); 
                         }else{
-                            return new HomeChildKanbanUtil(null, null, false, 'The field '+summField+' cannot be summarized.', null, null, null, null, null, null, null, null, null);   
+                            return new HomeChildKanbanUtil(null, null, false, 'The field '+summField+' cannot be summarized.', null, null, null, null, null, null, null, null, null, null, null, null);   
                         }  
                     }
                     if(summFieldSecond != null){
@@ -171,7 +171,7 @@ public with sharing class HomeChildKanbanCls {
                             sFldSecondIsCurrency = aftype;
                             aggQMapSecond = new Map<string, decimal>(); 
                         }else{
-                            return new HomeChildKanbanUtil(null, null, false, 'The field '+summFieldSecond+' cannot be summarized.', null, null, null, null, null, null, null, null, null);   
+                            return new HomeChildKanbanUtil(null, null, false, 'The field '+summFieldSecond+' cannot be summarized.', null, null, null, null, null, null, null, null, null, null, null, null);   
                         }  
                     }
                     
@@ -221,7 +221,7 @@ public with sharing class HomeChildKanbanCls {
                                     }
                                 }
                                 if(refObjName == null){
-                                    return new HomeChildKanbanUtil(null, null, false, 'You do not have access to relational object. Please contact your administrator.', null, null, null, null, null, null, null, null, null);
+                                    return new HomeChildKanbanUtil(null, null, false, 'You do not have access to relational object. Please contact your administrator.', null, null, null, null, null, null, null, null, null, null, null, null);
                                 }
                             }else{
                                 refObjName = currentFieldResult.getReferenceTo()[0].getDescribe().getName();
@@ -230,7 +230,7 @@ public with sharing class HomeChildKanbanCls {
                             if(fName != 'false'){
                              	qry += currentRelationName+'.'+fName+' ,';
                             }else{
-                                return new HomeChildKanbanUtil(null, null, false, 'You do not have access to relation object '+refObjName+'. Please contact your administrator.', null, null, null, null, null, null, null, null, null);
+                                return new HomeChildKanbanUtil(null, null, false, 'You do not have access to relation object '+refObjName+'. Please contact your administrator.', null, null, null, null, null, null, null, null, null, null, null, null);
                             }
                             currentMap.put('relationName', currentRelationName+'~*!'+fName);
                         }
