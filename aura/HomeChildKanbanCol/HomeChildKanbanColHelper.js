@@ -33,8 +33,8 @@
 
             var deci = 0;
             if(ftyp == "CURRENCY"){
-                options.prefix = "Supply: $";
-                optionsSecond.prefix = "Demand: $";
+                options.prefix = "(S) $";
+                optionsSecond.prefix = "(D) $";
             }else if(ftyp == "DOUBLE"){
                 deci = 2;
             }
