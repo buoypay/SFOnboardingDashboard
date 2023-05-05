@@ -12,11 +12,14 @@
     <aura:attribute name="pickvalueLength" type="integer"/>
     <aura:attribute name="recsMap" type="object"/>
     <aura:attribute name="summaryMap" type="object"/>
+    <aura:attribute name="summaryMapSecond" type="object"/>
     <aura:attribute name="kanbanField" type="string"/>
     <aura:attribute name="fldList" type="string"/>
     <aura:attribute name="recs" type="list"/>
     <aura:attribute name="summary" type="Integer"/>
     <aura:attribute name="rsFld" type="string"/>
+        <aura:attribute name="rsFldSecond" type="string"/>
+
     
     <aura:attribute name="fieldEditable" type="boolean"/>
     <aura:attribute name="objDeletable" type="boolean"/>
@@ -25,7 +28,10 @@
     
     <aura:attribute name="fieldTypeMap" type="object"/>
     
+    
     <aura:attribute name="psumval" type="Integer" default='0'/>
+        <aura:attribute name="psumvalSecond" type="Integer" default='0'/>
+
     
     <ltng:require scripts="{!$Resource.HomeChildKanbanjs}" afterScriptsLoaded="{!c.sLoaded}"/>               
     <aura:attribute name="kanbanHeight" type="integer"/>
@@ -42,6 +48,8 @@
                 <span class="stageLen">({!v.recs.length})</span>
             </h1>
         <p aura:id="cup" class="summaryClass slds-truncate"></p>
+        <p aura:id="cupSecond" class="summaryClass slds-truncate"></p>
+
         <ul aura:id="hckCol" ondrop="{!c.drop}" ondragover="{!c.allowDrop}" class="slds-has-dividers_around-space dropZone" data-Pick-Val="{!v.pickvalue}" style="{!'height:'+v.kanbanHeight+'px;'}">
             
             <aura:iteration var="objRecord" items="{!v.recs}" indexVar="recPos">

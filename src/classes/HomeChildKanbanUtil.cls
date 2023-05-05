@@ -13,6 +13,8 @@ public with sharing class HomeChildKanbanUtil {
         @AuraEnabled
         public Map<string, decimal> rollupData {get; set;}
         @AuraEnabled
+        public Map<string, decimal> rollupDataSecond {get; set;}
+        @AuraEnabled
         public boolean isSuccess {get; set;}
         @AuraEnabled
         public string errorMessage {get; set;}
@@ -23,7 +25,11 @@ public with sharing class HomeChildKanbanUtil {
         @AuraEnabled
         public string sumField {get; set;}
         @AuraEnabled
+        public string sumFieldSecond {get; set;}
+        @AuraEnabled
         public string sFldType {get; set;}
+        @AuraEnabled
+        public string sFldTypeSecond {get; set;}
     	@AuraEnabled
         public boolean isEditable {get; set;}
     	@AuraEnabled
@@ -33,7 +39,7 @@ public with sharing class HomeChildKanbanUtil {
     	@AuraEnabled
         public boolean isCreatable {get; set;}
         
-        public HomeChildKanbanUtil(Map<string, list<sobject>> recs, List<string> pickValstr, Boolean iscs, String errorMessage, String gFldName, String cObName, String sFldName, string sFldIsCurrency, Map<string, decimal> rollupData, Boolean isEditable, Boolean isDeletable, Map<String, Map<String, String>> fieldTypeMap, Boolean isCreatable){
+        public HomeChildKanbanUtil(Map<string, list<sobject>> recs, List<string> pickValstr, Boolean iscs, String errorMessage, String gFldName, String cObName, String sFldName,String sFldNameSecond, string sFldIsCurrency,  string sFldSecondIsCurrency, Map<string, decimal> rollupData, Map<string, decimal> rollupDataSecond, Boolean isEditable, Boolean isDeletable, Map<String, Map<String, String>> fieldTypeMap, Boolean isCreatable){
             this.records = recs;
             this.pickVals = pickValstr;
             this.isSuccess = iscs;
@@ -41,8 +47,11 @@ public with sharing class HomeChildKanbanUtil {
             this.gFieldName = gFldName;
             this.cObjName = cObName;
             this.sumField = sFldName;
+            this.sumFieldSecond = sFldNameSecond;
             this.sFldType = sFldIsCurrency;
+            this.sFldTypeSecond = sFldSecondIsCurrency;
             this.rollupData = rollupData;
+            this.rollupDataSecond = rollupDataSecond;
             this.isEditable = isEditable;
             this.isDeletable = isDeletable;
             this.fieldTypeMap = fieldTypeMap;

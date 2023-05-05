@@ -51,6 +51,7 @@
         <members>Kanban_Configuration__c.Name_Field__c</members>
         <members>Kanban_Configuration__c.Relation_Field__c</members>
         <members>Kanban_Configuration__c.Summarize_By__c</members>
+        <members>Kanban_Configuration__c.Summarize_By_Second__c</members>
         <name>CustomField</name>
     </types>
     <types>

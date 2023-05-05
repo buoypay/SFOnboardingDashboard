@@ -36,6 +36,8 @@
             }
             var agrFld = recFlds.kanbanDev__Summarize_By__c.value;
             var agrFldFval = agrFld ? agrFld : null;
+            var agrFldSecond = recFlds.kanbanDev__Summarize_By_Second__c.value;
+            var agrFldSecondFval = agrFldSecond ? agrFldSecond : null;
             
             if(objName && objFields && kanbanPicklistField){
                 //alert(recId + objName + objRelField + objFields + kanbanPicklistField);
@@ -45,6 +47,7 @@
                     'objFields' : objFields.split(';'),
                     'kabnanField' : kanbanPicklistField,
                     'summField' : agrFldFval,
+                    'summFieldSecond' : agrFldSecondFval,
                     'ParentRecId' : recId,
                     'relField' : objRelField,
                     'ExcVal' : ExcFVal,
@@ -94,12 +97,22 @@
             }
             var kfld = recFlds.kanbanDev__Group_By__c.value;
             var sfield = recFlds.kanbanDev__Summarize_By__c.value;
+
+            var sfieldSecond = recFlds.kanbanDev__Summarize_By_Second__c.value;
+
             
             if(rec[sfield] && !isNaN(rec[sfield])){
                 var smap = recsMap.rollupData;
                 smap[data.from] = smap[data.from] - rec[sfield];
                 smap[data.to] = smap[data.to] + rec[sfield];
                 recsMap.rollupData = smap;
+            }
+
+            if(rec[sfieldSecond] && !isNaN(rec[sfieldSecond])){
+                var smap = recsMap.rollupDataSecond;
+                smap[data.from] = smap[data.from] - rec[sfieldSecond];
+                smap[data.to] = smap[data.to] + rec[sfieldSecond];
+                recsMap.rollupDataSecond = smap;
             }
             
             rec[kfld] = data.to;
@@ -171,6 +184,8 @@
         console.log(rec);
         var action = component.get('c.deleteRec');
         var sfield = recFlds.kanbanDev__Summarize_By__c.value;
+        var sfieldSecond = recFlds.kanbanDev__Summarize_B_Second__c.value;
+
         action.setParams({
             'obj' : rec
         });
@@ -185,6 +200,12 @@
                     var smap = recsMap.rollupData;
                     smap[data.from] = smap[data.from] - rec[sfield];
                     recsMap.rollupData = smap;
+                }
+
+                if(rec[sfieldSecond] && !isNaN(rec[sfieldSecond])){
+                    var smap = recsMap.rollupDataSecond;
+                    smap[data.from] = smap[data.from] - rec[sfieldSecond];
+                    recsMap.rollupDataSecond = smap;
                 }
                 toastEvent.setParams({
                     "title": "Success",

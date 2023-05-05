@@ -20,6 +20,7 @@
         var cardFields = component.get('v.cardFields');
         var grpFldName = component.get('v.grpFldName');
         var sumFldName = component.get('v.sumFldName');
+        var sumFldSecondName = component.get('v.sumFldSecondName');
         var pickExclVals = component.get('v.pickExclVals');
         var configName = component.get('v.configName');
         var childObjectName = component.get('v.childObjectName');
@@ -75,6 +76,8 @@
             }
             sObj.kanbanDev__Kanban_For__c = kf;
             sObj.kanbanDev__Summarize_By__c = sumFldName;
+            sObj.kanbanDev__Summarize_By_Second__c = sumFldSecondName;
+
             sObj.kanbanDev__Group_By__c = grpFldName;
             sObj.kanbanDev__Fields_To_Show__c = cardFields;
             sObj.kanbanDev__Exclude_From_Group_By__c = pickExclVals;

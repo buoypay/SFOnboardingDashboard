@@ -113,10 +113,13 @@ public with sharing class HomeChildKanbanCls {
     }
     
     @AuraEnabled
-    public static HomeChildKanbanUtil getKanban(String objName, List<String> objFields, String kabnanField, String ParentRecId, String relField, List<string> ExcVal, String summField, String KbObjNameField){
+    public static HomeChildKanbanUtil getKanban(String objName, List<String> objFields, String kabnanField, String ParentRecId, String relField, List<string> ExcVal, String summField,String summFieldSecond, String KbObjNameField){
         //system.debug(objFields);
         if(summField != null){
             objFields.add(summField);
+        }
+        if(summFieldSecond != null){
+            objFields.add(summFieldSecond);
         }
         if(KbObjNameField != null && KbObjNameField != 'false'){
             if(Schema.getGlobalDescribe().get(objName).getDescribe().fields.getMap().get(KbObjNameField) != null){
@@ -137,9 +140,18 @@ public with sharing class HomeChildKanbanCls {
                     Schema.DescribeSObjectResult actdsc = Schema.getGlobalDescribe().get(objName).getDescribe();
                     Map<String, Schema.SObjectField> allFieldMap = actdsc.fields.getMap();
                     string agrFldName = null;
+                    string agrFldSecondName = null;
+
                     string sFldIsCurrency = null;
+                    string sFldSecondIsCurrency = null;
+
                     Map<string, decimal> aggQMap;
+                    Map<string, decimal> aggQMapSecond;
+
+
                     List<AggregateResult> sumQuery;
+                    List<AggregateResult> sumQuerySecond;
+
                     if(summField != null){
                         Schema.DescribeFieldResult ads = allFieldMap.get(summField).getDescribe();
                         string aftype = string.valueOf(ads.getType());
@@ -149,6 +161,17 @@ public with sharing class HomeChildKanbanCls {
                             aggQMap = new Map<string, decimal>(); 
                         }else{
                             return new HomeChildKanbanUtil(null, null, false, 'The field '+summField+' cannot be summarized.', null, null, null, null, null, null, null, null, null);   
+                        }  
+                    }
+                    if(summFieldSecond != null){
+                        Schema.DescribeFieldResult ads = allFieldMap.get(summFieldSecond).getDescribe();
+                        string aftype = string.valueOf(ads.getType());
+                        if(aftype == 'Double' || aftype == 'Integer' || aftype == 'Currency'){
+                            agrFldSecondName = ads.getLabel();
+                            sFldSecondIsCurrency = aftype;
+                            aggQMapSecond = new Map<string, decimal>(); 
+                        }else{
+                            return new HomeChildKanbanUtil(null, null, false, 'The field '+summFieldSecond+' cannot be summarized.', null, null, null, null, null, null, null, null, null);   
                         }  
                     }
                     
@@ -163,6 +186,10 @@ public with sharing class HomeChildKanbanCls {
                             if(summField != null){
                                 aggQMap.put(s.getValue(), 0);    
                             }
+                            if(summFieldSecond != null){
+                                aggQMapSecond.put(s.getValue(), 0);    
+                            }
+
                         }
                     }
                     
@@ -228,11 +255,17 @@ public with sharing class HomeChildKanbanCls {
                                 aggQMap.put(string.valueOf(s.get(kabnanField)), (Decimal)s.get(summField) + (Decimal)aggQMap.get(string.valueOf(s.get(kabnanField))) );       
                             }
                         }
+                        if(summFieldSecond != null){
+                            decimal sVal = (Decimal)s.get(summFieldSecond);
+                            if(sVal != null){
+                                aggQMapSecond.put(string.valueOf(s.get(kabnanField)), (Decimal)s.get(summFieldSecond) + (Decimal)aggQMapSecond.get(string.valueOf(s.get(kabnanField))) );       
+                            }
+                        }
                     }
                     //system.debug(recMaps);
-                    return new HomeChildKanbanUtil(recMaps, Pickvalslst, true, null, gFldName, cObName, agrFldName, sFldIsCurrency, aggQMap, gFldEditable, isObjDeletable, fieldTypeMap, isObjectCreateable);
+                    return new HomeChildKanbanUtil(recMaps, Pickvalslst, true, null, gFldName, cObName, agrFldName,,agrFldSecondName, sFldIsCurrency, sFldSecondIsCurrency, aggQMap, aggQMapSecond, gFldEditable, isObjDeletable, fieldTypeMap, isObjectCreateable);
                 }catch (exception e){
-                    return new HomeChildKanbanUtil(null, null, false, e.getMessage(), null, null, null, null, null, null, null, null, null);
+                    return new HomeChildKanbanUtil(null, null, false, e.getMessage(), null,null,null,null, null, null, null, null, null, null, null, null);
                 }
             }else{
                 return new HomeChildKanbanUtil(null, null, false, 'You do not have access to the specified Group By field. Please contact your administrator.', null, null, null, null, null, null, null, null, null);   

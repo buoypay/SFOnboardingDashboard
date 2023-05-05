@@ -17,6 +17,7 @@
     <aura:attribute name="cardFields" type="string"/>
     <aura:attribute name="grpFldName" type="string"/>
     <aura:attribute name="sumFldName" type="string"/>
+    <aura:attribute name="sumFldSecondName" type="string"/>
     <aura:attribute name="pickExclVals" type="string"/>
     <aura:attribute name="configName" type="string"/>
     <aura:attribute name="kanbanFor" type="string"/>
@@ -117,6 +118,14 @@
                 
                 <div class="slds-m-top_x-small">
                 <c:custom_select value="{!v.sumFldName}" aura:id="sumFldName" label="Summarize By" placeholder="Summarize By" errorMessage="Invalid input" searchable="true">
+                    <aura:iteration items="{!v.allFieldsList.sumBy}" var="objwrap">
+                        <c:custom_option label="{!objwrap.objLabel}" value="{!objwrap.objName}"/>
+                    </aura:iteration>
+                </c:custom_select>
+                </div>
+
+                 <div class="slds-m-top_x-small">
+                <c:custom_select value="{!v.sumFldSecondName}" aura:id="sumFldSecondName" label="Summarize By Second" placeholder="Summarize By Second" errorMessage="Invalid input" searchable="true">
                     <aura:iteration items="{!v.allFieldsList.sumBy}" var="objwrap">
                         <c:custom_option label="{!objwrap.objLabel}" value="{!objwrap.objName}"/>
                     </aura:iteration>
