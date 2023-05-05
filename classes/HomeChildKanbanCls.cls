@@ -263,15 +263,15 @@ public with sharing class HomeChildKanbanCls {
                         }
                     }
                     //system.debug(recMaps);
-                    return new HomeChildKanbanUtil(recMaps, Pickvalslst, true, null, gFldName, cObName, agrFldName,,agrFldSecondName, sFldIsCurrency, sFldSecondIsCurrency, aggQMap, aggQMapSecond, gFldEditable, isObjDeletable, fieldTypeMap, isObjectCreateable);
+                    return new HomeChildKanbanUtil(recMaps, Pickvalslst, true, null, gFldName, cObName, agrFldName,agrFldSecondName, sFldIsCurrency, sFldSecondIsCurrency, aggQMap, aggQMapSecond, gFldEditable, isObjDeletable, fieldTypeMap, isObjectCreateable);
                 }catch (exception e){
                     return new HomeChildKanbanUtil(null, null, false, e.getMessage(), null,null,null,null, null, null, null, null, null, null, null, null);
                 }
             }else{
-                return new HomeChildKanbanUtil(null, null, false, 'You do not have access to the specified Group By field. Please contact your administrator.', null, null, null, null, null, null, null, null, null);   
+                return new HomeChildKanbanUtil(null, null, false, 'You do not have access to the specified Group By field. Please contact your administrator.', null, null, null, null, null, null, null, null, null, null, null, null);   
             }
         }else{
-            return new HomeChildKanbanUtil(null, null, false, 'You do not have access to the requested fields. Please contact your administrator.', null, null, null, null, null, null, null, null, null);   
+            return new HomeChildKanbanUtil(null, null, false, 'You do not have access to the requested fields. Please contact your administrator.', null, null, null, null, null, null, null, null, null,  null, null, null);   
         }
         
     }
